@@ -104,7 +104,11 @@ public class Main {
 			
 		}
 	
-				
+		for(PersonagemJogo variavel: PersonagemJogo.values()) {
+			System.out.println(variavel.ordinal() + " - " + variavel.name());
+		}
+		
+		System.out.println("O druída está na posição " + PersonagemJogo.DRUIDA.ordinal() );
 
 	}
 }
