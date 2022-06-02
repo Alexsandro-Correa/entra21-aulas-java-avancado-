@@ -3,6 +3,7 @@ package br.com.entra21.javaavancado.principal;
 import java.util.Scanner;
 
 import br.com.entra21.javaavancado.principal.aula01.enums.PersonagemJogo;
+import br.com.entra21.javaavancado.principal.aula02.collections.list.AprenderCollections;
 
 public class Main {
 
@@ -33,6 +34,10 @@ public class Main {
 			case 2:
 				aprenderEnum();
 				break;
+				
+			case 3:
+				AprenderCollections.aprender();
+				break;
 
 			default:
 				System.out.println("Digite uma opção válida.");
@@ -46,10 +51,11 @@ public class Main {
 
 	private static String exibirMenu() {
 		String menu = "Vamos aprender sobre conceitos avançados em JAVA!\n";
-		menu += "\nEscolha uma das opções:";
+		menu += "\nEscolha uma das opções:\n";
 		menu += "\n0 - Sair";
 		menu += "\n1 - Wrapper";
 		menu += "\n2 - Enum";
+		menu += "\n3 - Collections-List";
 
 		return menu;
 	}
@@ -110,5 +116,9 @@ public class Main {
 		
 		System.out.println("O druída está na posição " + PersonagemJogo.DRUIDA.ordinal() );
 
+	}
+	
+	public static void aprender() {
+		
 	}
 }
