@@ -1,9 +1,20 @@
 package br.com.entra21.javaavancado.principal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
-import br.com.entra21.javaavancado.principal.aula01.enums.PersonagemJogo;
-import br.com.entra21.javaavancado.principal.aula02.collections.list.AprenderCollections;
+import br.com.entra21.javaavancado.principal.aula01.enums.wrapper.Aula01;
+import br.com.entra21.javaavancado.principal.aula02.collections.list.Aula02;
+import br.com.entra21.javaavancado.principal.aula03.Aula03;
+import br.com.entra21.javaavancado.principal.aula04.Aula04;
+import br.com.entra21.javaavancado.principal.aula05.Aula05;
+import br.com.entra21.javaavancado.principal.aula06.Aula06;
+import br.com.entra21.javaavancado.principal.aula07.Aula07;
+import br.com.entra21.javaavancado.principal.aula08.Aula08;
+import br.com.entra21.javaavancado.principal.aula09.Aula09;
+import br.com.entra21.javaavancado.principal.aula09.ConteudosJavaAvancado;
+
 
 public class Main {
 
@@ -13,9 +24,11 @@ public class Main {
 		DOMINGO, SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO
 	}
 
-	public static void main(String[] args) {
+	@ConteudosJavaAvancado
+	public static void main (String[] args) {
 
 		byte option;
+		Repositorio.inicializarPessoas();
 
 		do {
 			System.out.println(exibirMenu());
@@ -26,19 +39,56 @@ public class Main {
 			case 0:
 				System.out.println("Obrigador por usar o programa Aulas JAVA Avançado.");
 				break;
-
+			
 			case 1:
-				aprenderWrapper();
+				new Aula01("Wrapper e ENUM",
+				new ArrayList<>(Arrays.asList("Wrapper", "ENUM"))).aprender();;
 				break;
 
 			case 2:
-				aprenderEnum();
+				new Aula02("ArrayList e LinkedList",
+				new ArrayList<>(Arrays.asList("ArrayList", "LinkedList"))).aprender();
 				break;
 				
 			case 3:
-				AprenderCollections.aprender();
+				new Aula03("Dates e Annotations", 
+				new ArrayList<>(Arrays.asList("Datas Humanizadas", "Datas Computadorizadas"))).aprender();
+				break;
+										
+			case 4:
+				new Aula04("HashSet e CRUD",
+				new ArrayList<>(Arrays.asList("HashSet", "CRUD"))).aprender();
+				break;
+				
+			case 5:
+				new Aula05("Collections - MAP - HashMap",
+				new ArrayList<>(Arrays.asList("Definir", "Create", "Read", "Update", "Delete","Exemplo prático"))).aprender();
+				break;
+				
+			case 6:
+				new Aula06("Generics",
+				new ArrayList<>(Arrays.asList("Aprender Generics" , "Implementar CRUDS", "Adicionar Pessoa","Editar Pessoa", "Deletar Pessoa"))).aprender();;
 				break;
 
+			case 7:
+				ArrayList<String> assuntos = new ArrayList<>();
+				assuntos.add("Tratamento de Erro");
+				assuntos.add("Obter Detalhes do Erro");
+				assuntos.add("Custom Exception");
+				
+				new Aula07("Execeptions", assuntos).aprender();
+				break;
+				
+			case 8:
+				new Aula08("Lambda Functions",
+				new ArrayList<>(Arrays.asList("Listar", "Filtrar", "Estatísticas", "Ordenação"))).aprender();
+				break;
+			
+			case 9:
+				new Aula09("Exercises", 
+				new ArrayList<>(Arrays.asList("Wrapper","ENUM","Lists", "Time", "Date","Generics","Exceptions","Lambda"))).aprender();
+				break;
+				
 			default:
 				System.out.println("Digite uma opção válida.");
 				break;
@@ -52,73 +102,18 @@ public class Main {
 	private static String exibirMenu() {
 		String menu = "Vamos aprender sobre conceitos avançados em JAVA!\n";
 		menu += "\nEscolha uma das opções:\n";
-		menu += "\n0 - Sair";
-		menu += "\n1 - Wrapper";
-		menu += "\n2 - Enum";
-		menu += "\n3 - Collections-List";
+		menu += "\n0 - Exit";
+		menu += "\n1 - Wrapper e ENUM";
+		menu += "\n2 - Collections-List";
+		menu += "\n3 - Annotations and Dates";
+		menu += "\n4 - HashSet and CRUD";
+		menu += "\n5 - HashMap";
+		menu += "\n6 - Genererics";
+		menu += "\n7 - Exceptions";
+		menu += "\n8 - Lambda Functions ";
+		menu += "\n9 - Exercises";
 
 		return menu;
 	}
-
-	private static void aprenderWrapper() {
-
-		char letra = Character.valueOf('A');
-
-		boolean verdade = Boolean.parseBoolean("TRUE");
-		boolean verdade1 = Boolean.parseBoolean("tRue");
-		boolean verdade2 = Boolean.parseBoolean("true");
-		boolean falso = Boolean.parseBoolean("t");
-
-		byte inteiro1 = Byte.parseByte("127");
-		short inteiro2 = Short.parseShort("128");
-		int inteiro3 = Integer.parseInt("600000");
-		long inteiro4 = Long.parseLong("15000000");
-
-		float decimal1 = Float.parseFloat("1000.10");
-		double decimal2 = Double.parseDouble("1500.65");
-
-	}
-
-	private static void aprenderEnum() {
-
-		System.out.println("Testando Enum: " + DiasSemana.TERCA);
-		boolean hoje = DiasSemana.DOMINGO == DiasSemana.SEGUNDA;
-		System.out.println(hoje ? "sim" : "não");
-
-		for (int dia = 0; dia < DiasSemana.values().length; dia++) {
-			System.out.println((dia + 1) + " " + DiasSemana.values()[dia]);
-		}
-
-		System.out.println("Gosto desse tipo de personagem " + PersonagemJogo.SACERDOTE);
-		System.out.println("Geralmente a classe " + PersonagemJogo.SACERDOTE + " tem HP = " + PersonagemJogo.SACERDOTE.getVIDA());
-		
-		System.out.println("A característica mais comum dele é " + PersonagemJogo.ANAO.getDESCRICAO());
-		
-		System.out.println("O druída está no índice no Enum " + PersonagemJogo.DRUIDA.ordinal());
-		System.out.println("Veja a descrição completa do " + PersonagemJogo.DRUIDA + " sua vida é "
-		
-				+ PersonagemJogo.DRUIDA.getVIDA() + " e sua característica é " + PersonagemJogo.DRUIDA.getDESCRICAO());
-		System.out.println(PersonagemJogo.BARBARO.getDetails());
-		
-		for (int personagem = 0; personagem < PersonagemJogo.values().length; personagem++) {
-			
-			System.out.println("Contador = " + personagem + " posição do Enum = " + PersonagemJogo.values()[personagem].ordinal());
-			System.out.println("O personagem " + PersonagemJogo.values()[personagem].name());
-			System.out.println(PersonagemJogo.values()[personagem].getVIDA());
-			System.out.println("Hp = " + PersonagemJogo.values()[personagem].getDESCRICAO());
-			System.out.println("---------------------------------------------------");
-			
-		}
 	
-		for(PersonagemJogo variavel: PersonagemJogo.values()) {
-			System.out.println(variavel.ordinal() + " - " + variavel.name());
-		}
-		
-		System.out.println("O druída está na posição " + PersonagemJogo.DRUIDA.ordinal() );
-
-	}
-	
-	public static void aprender() {
-		
-	}
 }

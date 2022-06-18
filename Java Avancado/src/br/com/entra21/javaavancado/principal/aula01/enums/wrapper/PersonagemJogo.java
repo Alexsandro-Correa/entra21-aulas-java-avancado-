@@ -1,4 +1,4 @@
-package br.com.entra21.javaavancado.principal.aula01.enums;
+package br.com.entra21.javaavancado.principal.aula01.enums.wrapper;
 
 public enum PersonagemJogo {
 
