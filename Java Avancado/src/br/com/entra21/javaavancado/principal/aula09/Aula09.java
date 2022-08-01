@@ -362,7 +362,7 @@ public class Aula09 extends Aula {
 		pessoas.add(new Pessoa("Juliano", (byte) 32));
 
 		System.out.println("Percorrer a lista de pessoas:\n");
-		pessoas.forEach(pessoa -> {
+		pessoas.forEach(pessoa ->  {
 			System.out.println(pessoa.getNome());
 		});
 
