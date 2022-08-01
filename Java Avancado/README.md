@@ -275,126 +275,17 @@
 
 ---
 
-### *Crud - (Create, Read, Update and Delete)*
+***Inserir Elementos no HashSet***
 
 ---
 
-***Criar elementos no HashSet***
-
----
-
-> linguagens.add("Java");
+> Para criar elementos em um HashSet basta inserir .add após a variável, lembrando que valores não podem ser repetidos em um HashSet, não vai dar erro mas também nã fará nada caso tenho dois .add com o mesmo valor. 
 >
-> linguagens.add("C#");
 > linguagens.add("Java");
+> linguagens.add("C#");
+> linguagens.add("Java"); //Como citado, não ocorrerá erro, mas também não irá inserir o "Java" novamente pois já existe, e o HashSet não permite duplicidade. 
 > linguagens.add("Javascript");
 > linguagens.add("Delphi");
-> linguagens.add("Kotlin");
-> linguagens.add("Java");
-> linguagens.add("RubemOliotaLang");
-> linguagens.add("C");
-> linguagens.add("C#");
-
-> Itens que já existem não se repetem.
->
-> linguagens.addAll(new ArrayList<>(Arrays.asList("Angular", "Typescript")));
->
-> Também é possível inserir outra coleções que respeitem o tipo de <ClasseItem> declarada na definição do HashSet.
-
----
-
-***Ler informações de um HashSet***
-
----
-
->       System.out.println("Quantidade de elementos " + linguagens.size());
->
-> System.out.println("A lista está vazia ? " + (linguagens.isEmpty() ? "Sim" : "Não"));
->
->       System.out.println("------  Listando elementos -----");
->
-> System.out.println(linguagens);
->
->
-> System.out.println("-------------");
->
->for (String linguagen : linguagens) {
->
->System.out.println("Linguagem = " + linguagen);
->
->}
->
->       System.out.println(" -----  Procurando elementos -----");
->
-> System.out.println("Java esta nessa lista? " + (linguagens.contains("Java") ? "Sim" : "Não"));
->
-> System.out.println("Advpl esta nessa lista? " + (linguagens.contains("Advpl") ? "Sim" : "Não"));
-
----
-
-***Atualizar informações no HashSet***
-
----
-
-> Trocar um objeto que existe por outro não é possivel sem remover e colocar outro em seu lugar e mesmo assim a ordem pode ser outra.
->
->Exemplo:
->
->Antes:
->
-> [C#, Java, C, Typescript, Javascript, Delphi, RubemOliotaLang, Angular, Kotlin]
->
->
->
-> linguagens.remove("Javascript");
->
-> linguagens.add("Javascript2");
->
-> Depois:
->
-> [C#, Java, C, Typescript, Javascript2, Delphi, RubemOliotaLang, Angular, Kotlin]
->
-> Mas para objetos que possuem vários atributos é possível alterar os detalhes que o objeto continua no Set, porém é necessário verificar se ele existe, percorrer o HashSet para encontra o item que deseja atualizar
->
-> HashSet<Pessoa> pessoas = new HashSet<>();
->
-> pessoas.add(pessoa1);
-> pessoas.add(pessoa2);
-> pessoas.add(pessoa3);
->
-> System.out.println("--------- listando pessoas antes --------------");
->
-> for (Pessoa pessoa : pessoas) {
->
-> System.out.println(pessoa.getNome() + "-" + pessoa.getIdade());
->
-> }
->
-> Pessoa busca = null;
->
-> if (pessoas.contains(pessoa2)) {
->
-> for (Pessoa pessoa : pessoas) {
->
-> if (pessoa.getNome().equals(pessoa2.getNome())) {
->
-> pessoa.setNome("OUTRO NOME");
->
-> break;
->
-> }
->
-> }
->
-> }
->
-> System.out.println("--------- listando pessoas depois --------------");
->
-> for (Pessoa pessoa : pessoas) {
->
-> System.out.println(pessoa.getNome() + "-" + pessoa.getIdade());
->
-> }
 
 ---
 
@@ -402,13 +293,20 @@
 
 ---
 
-> Para remover é possível informando como argumento o próprio item que deseja remover
+> Para remover é possível informando como argumento o próprio item que deseja remover.
 >
-> linguagens.remove("Typescript");
+> linguagens.remove("Javascript");
 >
 > Também é possível deletar todos os itens com :
->
 > linguagens.clear();
+
+---
+
+### *Crud - (Create, Read, Update and Delete)*
+
+---
+
+> CRUD é basicamente uma metodologia para *Criar*(Create), *Ler*(READ), *Atualizar*(Update) e *Deletar*(Delete) objetos.
 
 ---
 
@@ -436,193 +334,35 @@
 
 ---
 
-***Criar elementos no HashMap***
+***Criar elementos em um HashMap***
+
+> Para criar um elemento no HashMap usamos .put após a variável criada, e colocamos valores de acordo com o tipo de variável declarada.
+>
+> Exemplo:
+>
+>  HashMap<String\, String\> estados = new HashMap<>();
+
+> estados.put("CE", "Ceará")
+> estados.put("SC", "Santa Catarina")
 
 ---
 
-> System.out.println("========  CREATE  verificar debug ================");
->
-> System.out.println("PUT por padrão o PUT inserte ou atualiza ");
->
-> estados.clear();
-> estados.put("CE", "Ceará");
-> estados.put("AL", "Alagoas");
-> estados.put("DF", "Distrito Federal");
-> estados.put("AC", "Acre");
-> estados.put("ES", "Espírito Santo");
-> estados.put("AP", "Amapá");
-> estados.put("AM", "Amazonas");
-> estados.put("BA", "Bahia");
-> estados.put("PB", "Paraíba");
-> estados.put("GO", "Goiás");
-> estados.put("SC", "Santa Catarina");
->
-> System.out.println(estados);
+***Deletar itens no HashMap***
 
 ---
 
-***Ler informações de um HashMap***
+> Para remover é possível informando como argumento o próprio item que deseja remover.
+>
+> estados.remove("SC", "Santa Catarina");
+>
+> Também é possível deletar todos os itens com :
+> linguagens.clear();
 
 ---
-
->       System.out.println("========  READ ================");
->
-> É possível ler dados gerais sobre a collection com isEmpty ou size.
->
-> System.out.println("A lista está vazia ? " + (estados.isEmpty() ? "Sim" : "Não"));
->
-> System.out.println("Quantidade de elementos " + estados.size());
->
-> Para listar os elementos é necessário informar como deseja percorrer, pois a lista é composta por 2 listas em paralelo (chaves e valores).
->
->       System.out.println("------  Listando elementos de forma simples -----");
->
-> System.out.println(estados);
->
-> O for aprimorado ou forEach trabalha com uma variável temporária enquanto percorre uma lista e nesse caso vamos percorrer a lista de chaves.
->
-> O método values devolve uma lista no formato "Tipo" que pode ser Iterado em um forEach.
->       System.out.println("-----listar as chaves por padrão--------");
->
-> for (String estado : estados.keySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> }
->
-> O for aprimorado ou forEach trabalha com uma variável temporária enquanto percorre uma lista e nesse caso vamos percorrer a lista de valores
->
-> O método values devolve uma lista no formato "Tipo" que pode ser Iterado em um forEach
-> 
->       System.out.println("--------listar apenas valores----------------");
->
-> for (String estado : estados.values()) {
->
-> System.out.println("Estado : " + estado);
->
-> }
->
-> O for aprimorado ou forEach trabalha com uma variável temporária enquanto percorre uma lista e nesse caso vamos percorrer a lista em detalhes.
->
-> O método entrySet devolve uma lista no formato Entry que pode ser Iterado em um forEach mas no formato de Map.
->
->       System.out.println("--------listar todos os detalhes----------------");
->
-> for (Entry<String, String> estado : estados.entrySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> System.out.println("\tKey : " + estado.getKey());
->
-> System.out.println("\tValue : " + estado.getValue());
->
-> }
->
-> Para verificar se a lista tem determinada chave utilize o método containsKey(AceitaUmaChaveParaBusca) retornando um boolean para tomada de decisão.
->
->       System.out.println(" -----  Procurando elementos por chave-----");
->
-> System.out.println("PB é uma chave nessa lista? " + (estados.containsKey("PB") ? "Sim" : "Não"));
->
-> System.out.println("PE é  uma chave nessa lista? " + (estados.containsKey("PE") ? "Sim" : "Não"));
->
-> Para verificar se a lista tem determinado item ou valor utilize o método containsValue(AceitaUmObjetoOuValor) retornando um boolean para tomada de decisão.
->
->       System.out.println(" -----  Procurando elementos por valor-----");
->
-> System.out.println("Paraíba é um valor nessa lista? " + (estados.containsValue("Paraíba") ? "Sim" : "Não"));
->
-> System.out.println("Pernambuco é um valor nessa lista? " + (estados.containsValue("Pernambuco") ? "Sim" : "Não"));
->
-> Há 3 formas de obter um objeto sem a necessidade de percorrer a lista
->
->       System.out.println(" -----  Obter um elemento por chave-----");
->
-> String obter1 = estados.get("DF");
->
-> System.out.println("Tentei buscar pela chave DF será que existe? " + (obter1 != null ? "Sim" : "Não"));
->
-> String obter2 = estados.get("RR");
->
-> System.out.println("Tentei buscar pela chave RR será que existe? " + (obter2 != null ? "Sim" : "Não"));
->
-> String obter3 = estados.getOrDefault("RO", "Não achei, tentei usar a chave RO");
->
-> System.out.println("Tentei buscar pela chave RO ... " + obter3);
-
----
-
-***Atualizando informações no HashMap***
-
----
-
->       System.out.println("======== UPDATE por padrão o PUT inserte ou atualiza ================");
->
-> System.out.println("----- basta informar uma chave existente e um valor novo");
->
->       System.out.println("--------- listando estados antes --------------");
->
-> for (Entry<String, String> estado : estados.entrySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> System.out.println("\tKey : " + estado.getKey());
->
-> System.out.println("\tValue : " + estado.getValue());
->
-> }
->
-> estados.put("SC", "Santa Catarina (Atualizado)");
->
->       System.out.println("--------- listando estados depois --------------");
->
-> for (Entry<String, String> estado : estados.entrySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> System.out.println("\tKey : " + estado.getKey());
->
-> System.out.println("\tValue : " + estado.getValue());
->
-> }
-
----
-
-***Deletando itens no HashMap***
-
----
-
->       System.out.println("======== DELETE ================");
->
-> System.out.println("--------- listando estados antes =" + estados.size() + "--------------");
->
-> for (Entry<String, String> estado : estados.entrySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> System.out.println("\tKey : " + estado.getKey());
->
-> System.out.println("\tValue : " + estado.getValue());
->
-> }
->
-> estados.remove("OPA");
->
-> estados.remove("SC", "Santa Catarina (Atualizado)");
->
->       System.out.println("--------- listando estados depois =" + estados.size() + "--------------");
->
-> for (Entry<String, String> estado : estados.entrySet()) {
->
-> System.out.println("Estado : " + estado);
->
-> System.out.println("\tKey : " + estado.getKey());
->
-> System.out.println("\tValue : " + estado.getValue());
->
-> }
 
 ## *Generics*
+
+---
 
 > Generics é uma forma de preparar declarações onde o tipo será dinâmico.
 >
@@ -714,3 +454,178 @@
 >  //ação a ser tomada
 >
 > }
+
+---
+
+## *Expressões Lambda*
+
+---
+
+> As expressões tem o objetivo de reduzir o esforço na geração de código e tem muito poder e performance em sua execução.
+>
+> Muito utilizado em Collections mas também é possível fazer todo tipo de ação com as expressões Lambda.
+
+---
+
+## *Datas*
+
+---
+
+### *Datas para Computadores*
+
+---
+
+> ara um computador, o tempo é um número que cresce a cada instante. No Java, historicamente era utilizado um long que representava os milissegundos desde 01/01/1970 às 00:00:00. Na nova API, a classe Instant é utilizada para representar esse número, agora com precisão de nanossegundos.
+>
+> Instant agora = Instant.now();
+>
+> System.out.println(agora); //YYY-MM-ddThh:mm:ss. formato ISO-8601) 
+>
+> Podemos usar um Instant, por exemplo, para medir o tempo de execução de um algoritmo.
+>
+> Instant inicio = Instant.now(); 
+>
+> rodaAlgoritmo(); 
+> 
+> Instant fim = Instant.now();
+>
+> Duration duracao = Duration.between(inicio, fim); 
+>
+> long duracaoEmMilissegundos = duracao.toMillis(); 
+>
+> Observe que utilizamos a classe Duration. Essa classe serve para medir uma quantidade de tempo em termos de nanossegundos. Você pode obter essa quantidade de tempo em diversas unidades chamando métodos como toNanos, toMillis, getSeconds, etc.
+
+---
+
+### *Datas para Humanos*
+
+---
+
+> Já para um humano, há uma divisão do tempo em anos, meses, dias, semanas, horas, minutos, segundos e por aí vai. Temos ainda fusos horários, horário de verão e diferentes calendários.
+>
+> Várias questões surgem ao considerarmos a interpretação humana do tempo. Por exemplo, no calendário judaico, um ano pode ter 13 meses. As classes do pacote java.time permitem que essas interpretações do tempo sejam definidas e manipuladas de forma precisa, ao contrário do que acontecia ao usarmos Date ou Calendar.
+>
+> Temos, por exemplo, a classe LocalDate que representa uma data, ou seja, um período de 24 horas com dia, mês e ano definidos.
+>
+> LocalDate hoje = LocalDate.now(); 
+>
+> System.out.println(hoje); //YYYY-MM-DD(formato ISO-8601) 
+>
+> LocalDate emissaoRG = LocalDate.of(2000, 1, 15); 
+>
+> Note que utilizamos o valor 1 para representar o mês de Janeiro. Poderíamos ter utilizado o enum Month com o valor JANUARY. Há ainda o enum DayOfWeek, que representa os dias da semana.
+>
+> Para calcularmos a duração entre dois LocalDate, devemos utilizar um Period, que já trata anos bissextos e outros detalhes.
+>
+> LocalDate homemNoEspaco = LocalDate.of(1961, Month.APRIL, 12);
+>
+> LocalDate homemNaLua = LocalDate.of(1969, Month.MAY, 25);
+> Period periodo = Period.between(homemNoEspaco, homemNaLua);
+>
+> // periodo.getYears() , periodo.getMonths(), periodo.getDays()); //8 anos, 1 mês e 13 dias
+>
+> Já a classe `LocalTime` serve para representar apenas um horário, sem data específica. Podemos, por exemplo, usá-la para representar o horário de entrada no trabalho.
+>
+> LocalTime horarioDeEntrada = LocalTime.of(9, 0); System.out.println(horarioDeEntrada); //09:00 
+>
+> A classe LocalDateTime serve para representar uma data e hora específicas. Podemos representar uma data e hora de uma prova importante ou de uma audiência em um tribunal.
+>
+> LocalDateTime agora = LocalDateTime.now(); LocalDateTime aberturaDaCopa = LocalDateTime.of(2014, Month.JUNE, 12, 17, 0); System.out.println(aberturaDaCopa); //2014-06-12T17:00 (formato ISO-8601).
+
+---
+
+### *Manipulando Datas*
+
+---
+
+> Todas as classes mencionadas possuem diversos métodos que permitem manipular as medidas de tempo. Por exemplo, podemos usar o método plusDays da classe LocalDate para aumentarmos um dia:
+>
+> LocalDate hoje = LocalDate.now(); LocalDate amanha = hoje.plusDays(1); 
+>
+> Outro cálculo interessante é o número de medidas de tempo até uma determinada data, que podemos fazer através do método until. 
+>
+> Para descobrir o número de dias até uma data, por exemplo, devemos passar ChronoUnit.DAYS como parâmetro. 
+>
+> MonthDay natal = MonthDay.of(Month.DECEMBER, 25); 
+> 
+> LocalDate natalDesseAno = natal.atYear(Year.now().getValue());
+>
+> long diasAteONatal = LocalDate.now() .until(natalDesseAno, ChronoUnit.DAYS);
+
+---
+
+## *Annotations (Anotações)*
+
+---
+
+> Para definir uma anotação no código Java, usamos o símbolo arroba (@) seguido do nome da mesma. Dependendo da categoria da annotation, pode ser necessário incluir dados a ela, no formato de pares nome=valor. 
+>
+> São três as categorias de anotações:
+> ---
+> - `Anotações marcadoras` – são aquelas que não possuem membros. São identificadas apenas pelo nome, sem dados adicionais. Por exemplo, @Override é uma anotação marcadora;
+> ---
+> - `Anotações de valor único` – são similares às anteriores, no entanto, possuem um único membro, chamado valor. Elas são representadas pelo nome da anotação e um par nome=valor, ou simplesmente com o valor, entre parênteses. Em outras palavras, quando a anotação possui um único membro, só é necessário informar o valor, além do nome da anotação. Por exemplo, @MinhaAnotacao(“valor”) é um exemplo de sintaxe deste tipo de anotação;
+> ---
+> -  `Anotações completas` – são aquelas que possuem múltiplos membros. Portanto, neste tipo, devemos usar a sintaxe completa para cada par nome=valor. Neste caso, cada par é informado separado do outro por uma vírgula. Por exemplo, @Version(major=1, minor=0, micro=0) é um caso de anotação completa.
+
+---
+
+***Tipos de Anotações Padrão***
+
+---
+
+> Os tipos anotação padrão são aquelas providas como parte do Java no pacote java.lang. Essas anotações podem ser utilizadas sem qualquer esforço adicional em suas aplicações, pois, visto que são parte de java.lang, nem mesmo precisam ser importadas.
+>
+**@Override**
+>
+> É uma anotação marcadora que deve ser usada apenas com métodos. Serve para indicar que o método anotado está sobrescrevendo um método da superclasse.
+>
+> **@Deprecated**
+>
+> @Deprecated, assim como @Override, é também uma anotação marcadora. Esta anotação é utilizada quando é necessário indicar que um método não deveria mais ser usado, ou seja, informa que o método está obsoleto. 
+> 
+> Diferente de @Override, @Deprecated deve ser colocada na assinatura do método
+>
+> Por que simplesmente não removemos o método obsoleto?
+> E a resposta é que precisamos manter a compatibilidade com sistemas legados que usam a classe. 
+>
+> Ou seja, mesmo implementando uma nova versão de um método, os sistemas que já existem precisam continuar funcionando. 
+>
+> Os programadores serão então alertados da mudança e gradativamente irão modificando suas aplicações para se adaptar à nova versão da classe.
+>
+> O uso dessa anotação não provoca qualquer erro durante a compilação, quando utilizamos um método marcado com ela, seja sobrescrevendo-o ou fazendo uma chamada a ele. Se desejarmos, o compilador apenas emitirá um alerta de que o método está obsoleto.
+>
+> **@SuppressWarnings**
+>
+> Aplicações criadas antes do advento do Java 5 podem ter algum código que gera alertas (warnings) durante a compilação com esta versão ou posteriores. É o caso das collections, nas quais o Java 5 permite o uso de generics para a especificação de tipos.
+
+---
+
+***Criar Anotações e adicionar membros ao tipo de Anotação***
+
+---
+
+> Uma declaração de tipo anotação é na verdade uma espécie de declaração de interface. Apenas para distinguir uma declaração da outra, a palavra-chave interface é precedida por um arroba (@) quando queremos declarar um tipo anotação.
+> Um elemento em um tipo anotação é definido por uma declaração de método.
+
+> /**
+>
+> * Tipo anotação para indicar que uma coisa não pode ser esquecida
+>
+> */
+>
+> public @interface Lembrete {
+>
+> String value();
+>
+> }
+>
+// utilizando
+>
+> @Lembrete(value = "o value esta lá na interface e o conteudo fica aqui")
+>
+> private static void detalharAtributo() {
+>
+> }
+
+---
